@@ -1,7 +1,7 @@
 //
 // PIXEL ART MAKER
 // STEVEN HENDRICKS
-//  -- WITH EMOTIONAL SUPPORT FROM CALEB
+//  ~~ WITH EMOTIONAL SUPPORT FROM CALEB ~~
 
 // AREA TO CONTAIN THE BOX OF PIXELS (DIVS)
 var container = document.createElement('div');
@@ -10,44 +10,62 @@ var savedColor = '';
 // PLACE TO STORE THE COLOR PALLATE TO CHOOSE FROM
 var colorPal = document.createElement('div');
 
+
 // LISTEN FOR A CLICK WITHIN THE CONTAINER THEN RUN changeColor FUN
 container.addEventListener('mousedown', changeColor);
 // LISTEN/SAVE CHOSEN COLOR TO PAINT WITH FROM THE COLOR PALLATE
 colorPal.addEventListener('mousedown', function(){
   savedColor = event.target.style.backgroundColor;
+  // body.style.cursor = 'savedColor';
+  //console.log(savedColor);
+  // event.target.style.cursor = savedColor;
+  colors[31].style.backgroundColor = savedColor;
+  // console.log(event.target.style.cursor);
 });
 
-// CHANGE APPROPRIATE DIV WITH THE SELECED COLOR
+// CHANGE APPROPRIATE DIV WITH THE SELECTED COLOR
 function changeColor() {
   event.target.style.backgroundColor = savedColor;
     container.addEventListener('mouseover', changeColor);
     container.addEventListener('mouseup', function() {
       container.removeEventListener('mouseover', changeColor);
+
     });
 }//  container.removeEventListener('mouseup', changeColor)
 
+// CREATE OVERALL CONTAINER SIZE/STYLING
 container.classList.add('container');
 container.style.width = '1300px';
 container.style.height = '650px';
+container.style.boxShadow = '0 0 5em #000000';
+//container.style.borderRadius = '40px';
+container.style.backgroundColor = '#ffffff';
+container.style.border = '2px solid #000000';
+//box-shadow: inset 0 0 1em gold, 0 0 1em red;
 
+// GO-TO BODY TAG, APPEND CONTAINER TO BODY
 var body = document.getElementsByTagName('body')[0];
 body.appendChild(container);
+body.style.backgroundColor = '#416b5c';
+body.style.fontFamily = 'Orbitron', 'sans-serif';
 
+//body.style.float = 'center';
+//font-family: 'Orbitron', sans-serif;
 
-// BUILD ALL OF THE PIXELS (DIVS)
-for (var i = 0; i < 15355; i++) {
+// BUILD ALL OF THE PAINTING PIXELS (DIVS)
+for (var i = 0; i < 8450; i++) {
 var div = document.createElement('div');
   container.appendChild(div);
   div.classList.add('pixel');
-  div.style.width = '5px';
-  div.style.paddingBottom = '5px';
+  div.style.width = '8px';
+  div.style.paddingBottom = '8px';
   div.style.float = 'left';
-  div.style.border = '1px solid black';
+  div.style.border = '1px solid #909b97';
+  //div.style.borderRadius = '40px';
 } // console.log(container);
 
-
 //
-// CREATE COLOR CHOICES
+// CREATE COLOR CHOICES  ~~~~~
 //
 // APPEND/SIZE THE OVERALL COLOR PALLATE
 body.appendChild(colorPal);
@@ -56,15 +74,19 @@ colorPal.style.height = '32px';
 //console.log(colors);
 
 // CREATE THE COLOR PALLATE BOXES
-for (var i = 0; i < 31; i++) {
+for (var i = 0; i < 32; i++) {
   var div = document.createElement('div');
     colorPal.appendChild(div);
     div.classList.add('colorChoice');
     div.style.width = '30px';
     div.style.paddingBottom = '30px';
     div.style.float = 'left';
-    div.style.border = '1px solid black';
+    div.style.border = '2px solid #000000';
+    div.style.borderRadius = '40px';
 }
+
+// var selectedColor = document.createElement('div')
+// colorPal.appendChild(selectedColor)
 
 // FILL IN THE COLORS OF THE COLOR PALLATE
 var colors = document.getElementsByClassName('colorChoice');
